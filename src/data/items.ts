@@ -71,6 +71,7 @@ export const VENTA_ITEMS: CheckItem[] = [
   { id: 'v26', name: 'Cubrebocas', category: 'Higiene' },
   { id: 'v27', name: 'Gel antibacterial', category: 'Higiene' },
   { id: 'v28', name: 'Gas LP', category: 'Equipo' },
+  { id: 'v43', name: 'Parrilla', category: 'Equipo' },
   { id: 'v29', name: 'Mesa', category: 'Equipo' },
   { id: 'v30', name: 'Mantel', category: 'Equipo' },
   { id: 'v31', name: 'Cucharas para mermeladas', category: 'Utensilios' },

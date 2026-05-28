@@ -21,7 +21,13 @@ function loadSession(mode: SessionMode): Session | null {
   try {
     const raw = localStorage.getItem(STORAGE_KEY(mode))
     if (!raw) return null
-    return JSON.parse(raw) as Session
+    const session = JSON.parse(raw) as Session
+    // No cargar sesiones ya completadas (evita auto-disparar onComplete)
+    if (session.pending.length === 0) return null
+    // No cargar sesiones con lista desactualizada (ítems añadidos/removidos)
+    const currentItems = getItemsByMode(mode)
+    if (session.totalItems !== currentItems.length) return null
+    return session
   } catch {
     return null
   }

@@ -85,15 +85,17 @@ export default function SwipeCard({ item, onSwipe, isNext = false, mode }: Props
       onPointerUp={handlePointerUp}
       onPointerCancel={handlePointerUp}
     >
-      {/* Category badge */}
-      <div className="absolute top-6 left-6 right-6 flex items-center justify-between">
-        <span
-          className="text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider"
-          style={{ backgroundColor: `${categoryColor}20`, color: categoryColor }}
-        >
-          {item.category}
-        </span>
-      </div>
+      {/* Category badge — solo en la tarjeta activa */}
+      {!isNext && (
+        <div className="absolute top-6 left-6 right-6 flex items-center justify-between">
+          <span
+            className="text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider"
+            style={{ backgroundColor: `${categoryColor}20`, color: categoryColor }}
+          >
+            {item.category}
+          </span>
+        </div>
+      )}
 
       {/* Confirm overlay — izquierda */}
       <div
@@ -121,8 +123,8 @@ export default function SwipeCard({ item, onSwipe, isNext = false, mode }: Props
         </div>
       </div>
 
-      {/* Item content */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center px-8 text-center select-none">
+      {/* Item content — oculto en peek para evitar badge doble */}
+      <div className={`absolute inset-0 flex flex-col items-center justify-center px-8 text-center select-none ${isNext ? 'invisible' : ''}`}>
         <div
           className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 text-3xl"
           style={{ backgroundColor: `${categoryColor}18` }}

@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 import type { SessionMode, CompletionStats } from '../types'
 import { useSession } from '../hooks/useSession'
 import { getItemById } from '../data/items'
@@ -28,6 +28,7 @@ export default function SwipeSession({ mode, onComplete, onBack }: Props) {
   const [cardKey, setCardKey] = useState(0)
   const [showResetConfirm, setShowResetConfirm] = useState(false)
   const haptic = useHaptic()
+  const completedRef = useRef(false)
 
   const handleSwipe = useCallback((direction: 'confirm' | 'skip') => {
     if (!currentItemId) return
@@ -43,7 +44,10 @@ export default function SwipeSession({ mode, onComplete, onBack }: Props) {
   }, [undoLastAction, haptic])
 
   useEffect(() => {
-    if (isComplete) onComplete(getCompletionStats())
+    if (isComplete && !completedRef.current) {
+      completedRef.current = true
+      onComplete(getCompletionStats())
+    }
   }, [isComplete, onComplete, getCompletionStats])
 
   const confirmedCount = session.confirmed.length
