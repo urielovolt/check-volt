@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+import confetti from 'canvas-confetti'
 import type { CompletionStats } from '../types'
 
 interface Props {
@@ -19,8 +21,21 @@ export default function SessionComplete({ stats, onNewSession, onHome }: Props) 
   const modeLabel = stats.mode === 'compra' ? 'Día de Compra' : 'Salida a Venta'
   const duration = formatDuration(stats.startedAt, stats.finishedAt)
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      confetti({
+        particleCount: 120,
+        spread: 80,
+        origin: { y: 0.55 },
+        colors: ['#F97316', '#FB923C', '#22C55E', '#FBBF24', '#ffffff'],
+        scalar: 1.1,
+      })
+    }, 200)
+    return () => clearTimeout(timer)
+  }, [])
+
   return (
-    <div className="flex flex-col items-center justify-between h-full bg-bg px-6 pb-safe pb-8 pt-safe pt-12">
+    <div className="screen-enter flex flex-col items-center justify-between h-full bg-bg px-6 pb-safe pb-8 pt-safe pt-12">
       {/* Main content */}
       <div className="flex-1 flex flex-col items-center justify-center gap-4">
         {/* Check animation */}

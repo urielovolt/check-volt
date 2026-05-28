@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect } from 'react'
 import type { SessionMode, CompletionStats } from '../types'
 import { useSession } from '../hooks/useSession'
 import { getItemById } from '../data/items'
+import { useHaptic } from '../hooks/useHaptic'
 import SwipeCard from './SwipeCard'
 
 interface Props {
@@ -26,6 +27,7 @@ export default function SwipeSession({ mode, onComplete, onBack }: Props) {
 
   const [cardKey, setCardKey] = useState(0)
   const [showResetConfirm, setShowResetConfirm] = useState(false)
+  const haptic = useHaptic()
 
   const handleSwipe = useCallback((direction: 'confirm' | 'skip') => {
     if (!currentItemId) return
@@ -35,9 +37,10 @@ export default function SwipeSession({ mode, onComplete, onBack }: Props) {
   }, [currentItemId, confirmItem, skipItem])
 
   const handleUndo = useCallback(() => {
+    haptic.undo()
     undoLastAction()
     setCardKey(k => k + 1)
-  }, [undoLastAction])
+  }, [undoLastAction, haptic])
 
   useEffect(() => {
     if (isComplete) onComplete(getCompletionStats())
@@ -55,7 +58,7 @@ export default function SwipeSession({ mode, onComplete, onBack }: Props) {
   const isOnSecondRound = confirmedCount > 0 && pendingCount > 0 && pendingCount < totalItems
 
   return (
-    <div className="flex flex-col h-full bg-bg">
+    <div className="screen-enter flex flex-col h-full bg-bg">
       {/* Header */}
       <div className="flex items-center justify-between px-4 pt-safe pt-3 pb-3 border-b border-card-border">
         <button
@@ -125,9 +128,9 @@ export default function SwipeSession({ mode, onComplete, onBack }: Props) {
 
       {/* Bottom controls */}
       <div className="flex items-center justify-between px-8 pb-safe pb-6 pt-4">
-        {/* Confirm button — izquierda, igual que el deslize */}
+        {/* Confirm button */}
         <button
-          onClick={() => handleSwipe('confirm')}
+          onClick={() => { haptic.confirm(); handleSwipe('confirm') }}
           className="w-14 h-14 rounded-full bg-success flex items-center justify-center active:opacity-80 transition-all active:scale-90 shadow-lg"
         >
           <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth="3">
@@ -146,9 +149,9 @@ export default function SwipeSession({ mode, onComplete, onBack }: Props) {
           </svg>
         </button>
 
-        {/* Skip button — derecha, igual que el deslize */}
+        {/* Skip button */}
         <button
-          onClick={() => handleSwipe('skip')}
+          onClick={() => { haptic.skip(); handleSwipe('skip') }}
           className="w-14 h-14 rounded-full bg-surface border border-card-border flex items-center justify-center active:bg-card transition-all active:scale-90 shadow-lg"
         >
           <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#EF4444" strokeWidth="2.5">

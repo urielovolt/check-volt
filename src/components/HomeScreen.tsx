@@ -16,7 +16,7 @@ export default function HomeScreen({ onStart }: Props) {
   }, [])
 
   return (
-    <div className="flex flex-col items-center justify-between h-full bg-bg px-6 py-safe">
+    <div className="screen-enter flex flex-col items-center justify-between h-full bg-bg px-6 py-safe">
       {/* Header */}
       <div className="flex-1 flex flex-col items-center justify-center gap-3 -mt-8">
         {/* Logo */}

@@ -1,6 +1,7 @@
 import { useRef, useState, useCallback } from 'react'
 import type { CheckItem } from '../types'
 import { CATEGORY_COLORS } from '../data/items'
+import { useHaptic } from '../hooks/useHaptic'
 
 type SwipeDirection = 'confirm' | 'skip' | null
 
@@ -19,6 +20,7 @@ export default function SwipeCard({ item, onSwipe, isNext = false, mode }: Props
   const [exitDir, setExitDir] = useState<SwipeDirection>(null)
   const startX = useRef(0)
   const cardRef = useRef<HTMLDivElement>(null)
+  const haptic = useHaptic()
 
   const handlePointerDown = useCallback((e: React.PointerEvent) => {
     if (isNext) return
@@ -37,15 +39,17 @@ export default function SwipeCard({ item, onSwipe, isNext = false, mode }: Props
     setIsDragging(false)
 
     if (dragX < -THRESHOLD) {
+      haptic.confirm()
       setExitDir('confirm')
       setTimeout(() => onSwipe('confirm'), 300)
     } else if (dragX > THRESHOLD) {
+      haptic.skip()
       setExitDir('skip')
       setTimeout(() => onSwipe('skip'), 300)
     } else {
       setDragX(0)
     }
-  }, [isDragging, dragX, onSwipe])
+  }, [isDragging, dragX, onSwipe, haptic])
 
   const categoryColor = CATEGORY_COLORS[item.category] ?? '#6B7280'
   const rotation = isDragging ? dragX * 0.08 : 0
@@ -71,8 +75,8 @@ export default function SwipeCard({ item, onSwipe, isNext = false, mode }: Props
       className={`absolute inset-0 m-auto w-[85vw] max-w-sm rounded-3xl shadow-2xl swipe-card ${!isNext ? 'card-enter' : ''}`}
       style={{
         height: 'min(460px, 70vh)',
-        background: 'linear-gradient(160deg, #2A2A2A 0%, #1E1E1E 100%)',
-        border: '1px solid #333',
+        background: `linear-gradient(160deg, ${categoryColor}14 0%, #1E1E1E 45%)`,
+        border: `1px solid ${categoryColor}35`,
         ...getTransformStyle(),
         zIndex: isNext ? 1 : 2,
       }}
@@ -128,7 +132,7 @@ export default function SwipeCard({ item, onSwipe, isNext = false, mode }: Props
         <h2 className="text-2xl font-bold text-white leading-tight mb-2">
           {item.name}
         </h2>
-        <p className="text-muted text-sm">{item.category}</p>
+        <p className="text-sm" style={{ color: categoryColor, opacity: 0.8 }}>{item.category}</p>
       </div>
 
       {/* Bottom drag hint */}
