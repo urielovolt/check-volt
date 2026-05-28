@@ -80,7 +80,7 @@ export default function HomeScreen({ onStart }: Props) {
               <span className="text-2xl">🍽️</span>
             </div>
             <div className="flex items-center gap-2 mt-1">
-              <span className="text-sm text-muted">43 artículos</span>
+              <span className="text-sm text-muted">44 artículos</span>
               {activeVenta && (
                 <span className="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full font-medium">
                   Sesión activa
