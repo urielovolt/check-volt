@@ -1,0 +1,96 @@
+import type { CheckItem } from '../types'
+
+export const CATEGORY_COLORS: Record<string, string> = {
+  'Ingredientes': '#F97316',
+  'Empaque': '#3B82F6',
+  'Higiene': '#22C55E',
+  'Equipo': '#A855F7',
+  'Utensilios': '#EAB308',
+  'Misceláneos': '#6B7280',
+  'Vestimenta': '#EC4899',
+}
+
+export const COMPRA_ITEMS: CheckItem[] = [
+  { id: 'c01', name: 'Nutella', category: 'Ingredientes' },
+  { id: 'c02', name: 'Cajeta Coronado', category: 'Ingredientes' },
+  { id: 'c03', name: 'Mermelada Frutos Rojos McCormick', category: 'Ingredientes' },
+  { id: 'c04', name: 'Mermelada Zarzamora McCormick', category: 'Ingredientes' },
+  { id: 'c05', name: 'Queso Crema Fiorello', category: 'Ingredientes' },
+  { id: 'c06', name: 'Fresa por domo', category: 'Ingredientes' },
+  { id: 'c07', name: 'Plátano', category: 'Ingredientes' },
+  { id: 'c08', name: 'Nuez', category: 'Ingredientes' },
+  { id: 'c09', name: 'Queso Mozzarella "DIN"', category: 'Ingredientes' },
+  { id: 'c10', name: 'Jamón Chimex', category: 'Ingredientes' },
+  { id: 'c11', name: 'Chorizo 2 tantos', category: 'Ingredientes' },
+  { id: 'c12', name: '2 Jalapeños', category: 'Ingredientes' },
+  { id: 'c13', name: 'Chiles en vinagre', category: 'Ingredientes' },
+  { id: 'c14', name: 'Aceitunas', category: 'Ingredientes' },
+  { id: 'c15', name: 'Salsa de tomate "Barilla"', category: 'Ingredientes' },
+  { id: 'c16', name: 'Harina de trigo "Moderna"', category: 'Ingredientes' },
+  { id: 'c17', name: 'Leche', category: 'Ingredientes' },
+  { id: 'c18', name: 'Huevos (12)', category: 'Ingredientes' },
+  { id: 'c19', name: 'Mantequilla', category: 'Ingredientes' },
+  { id: 'c20', name: 'Cono para crepas', category: 'Empaque' },
+  { id: 'c21', name: 'Papel grado alimenticio', category: 'Empaque' },
+  { id: 'c22', name: 'Servilleta', category: 'Empaque' },
+  { id: 'c23', name: 'Plato desechable', category: 'Empaque' },
+  { id: 'c24', name: 'Bolsa de asa', category: 'Empaque' },
+  { id: 'c25', name: 'Tinta para sello', category: 'Misceláneos' },
+  { id: 'c26', name: 'Guante de nitrilo', category: 'Higiene' },
+  { id: 'c27', name: 'Cubrebocas', category: 'Higiene' },
+  { id: 'c28', name: 'Gel antibacterial', category: 'Higiene' },
+  { id: 'c29', name: 'Gas LP', category: 'Equipo' },
+]
+
+export const VENTA_ITEMS: CheckItem[] = [
+  { id: 'v01', name: 'Nutella', category: 'Ingredientes' },
+  { id: 'v02', name: 'Cajeta Coronado', category: 'Ingredientes' },
+  { id: 'v03', name: 'Mermelada Frutos Rojos McCormick', category: 'Ingredientes' },
+  { id: 'v04', name: 'Mermelada Zarzamora McCormick', category: 'Ingredientes' },
+  { id: 'v05', name: 'Queso Crema Fiorello', category: 'Ingredientes' },
+  { id: 'v06', name: 'Fresa desinfectada', category: 'Ingredientes' },
+  { id: 'v07', name: 'Plátano', category: 'Ingredientes' },
+  { id: 'v08', name: 'Nuez', category: 'Ingredientes' },
+  { id: 'v09', name: 'Queso Mozzarella', category: 'Ingredientes' },
+  { id: 'v10', name: 'Jamón Chimex (12 piezas)', category: 'Ingredientes' },
+  { id: 'v11', name: 'Chorizo con jalapeño preparado', category: 'Ingredientes' },
+  { id: 'v12', name: 'Chiles en vinagre', category: 'Ingredientes' },
+  { id: 'v13', name: 'Aceitunas', category: 'Ingredientes' },
+  { id: 'v14', name: 'Salsa de tomate Barilla', category: 'Ingredientes' },
+  { id: 'v15', name: 'Base crepa', category: 'Ingredientes' },
+  { id: 'v16', name: '600 ml agua purificada', category: 'Ingredientes' },
+  { id: 'v17', name: 'Mantequilla o margarina', category: 'Ingredientes' },
+  { id: 'v18', name: 'Cono crepero', category: 'Empaque' },
+  { id: 'v19', name: 'Papel grado alimenticio', category: 'Empaque' },
+  { id: 'v20', name: 'Servilletas', category: 'Empaque' },
+  { id: 'v21', name: 'Cucharas pasteleras', category: 'Utensilios' },
+  { id: 'v22', name: 'Platos desechables', category: 'Empaque' },
+  { id: 'v23', name: 'Bolsas', category: 'Empaque' },
+  { id: 'v24', name: 'Tinta para sello', category: 'Misceláneos' },
+  { id: 'v25', name: 'Guantes de nitrilo', category: 'Higiene' },
+  { id: 'v26', name: 'Cubrebocas', category: 'Higiene' },
+  { id: 'v27', name: 'Gel antibacterial', category: 'Higiene' },
+  { id: 'v28', name: 'Gas LP', category: 'Equipo' },
+  { id: 'v29', name: 'Mesa', category: 'Equipo' },
+  { id: 'v30', name: 'Mantel', category: 'Equipo' },
+  { id: 'v31', name: 'Cucharas para mermeladas', category: 'Utensilios' },
+  { id: 'v32', name: 'Cuchillo', category: 'Utensilios' },
+  { id: 'v33', name: 'Tabla para picar', category: 'Utensilios' },
+  { id: 'v34', name: 'Bote de basura', category: 'Equipo' },
+  { id: 'v35', name: 'Esparcidor de crepas', category: 'Utensilios' },
+  { id: 'v36', name: 'Base de plástico para esparcidor', category: 'Utensilios' },
+  { id: 'v37', name: 'Pala para voltear', category: 'Utensilios' },
+  { id: 'v38', name: 'Cuchara y tenedor para chorizo', category: 'Utensilios' },
+  { id: 'v39', name: 'Bolsita de cambio', category: 'Misceláneos' },
+  { id: 'v40', name: 'Mandiles', category: 'Vestimenta' },
+  { id: 'v41', name: 'Encendedor', category: 'Misceláneos' },
+  { id: 'v42', name: 'Bocina para música', category: 'Misceláneos' },
+]
+
+export function getItemsByMode(mode: 'compra' | 'venta'): CheckItem[] {
+  return mode === 'compra' ? COMPRA_ITEMS : VENTA_ITEMS
+}
+
+export function getItemById(id: string, mode: 'compra' | 'venta'): CheckItem | undefined {
+  return getItemsByMode(mode).find(item => item.id === id)
+}
